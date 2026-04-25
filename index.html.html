@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nepal Shorts | Earn Rs. 1000</title>
+    <link rel="manifest" href="manifest.json">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #000; color: white; overflow: hidden; margin: 0; font-family: sans-serif; }
+        .short-container { height: 100vh; scroll-snap-type: y mandatory; overflow-y: scroll; scroll-behavior: smooth; }
+        .short-card { height: 100vh; width: 100vw; scroll-snap-align: start; position: relative; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #222; }
+        video { height: 100%; width: 100%; object-fit: cover; }
+        .ui-overlay { position: absolute; bottom: 100px; right: 20px; display: flex; flex-direction: column; align-items: center; gap: 25px; z-index: 10; }
+        .info-overlay { position: absolute; bottom: 100px; left: 20px; z-index: 10; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
+        .btn-action { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 12px; border-radius: 50%; width: 55px; height: 55px; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 1px solid rgba(255,255,255,0.2); }
+    </style>
+</head>
+<body>
+
+    <div class="fixed top-0 w-full p-4 z-50 flex justify-between items-center bg-gradient-to-b from-black/80 to-transparent">
+        <h1 class="text-xl font-black italic text-red-600">NP SHORTS</h1>
+        <div id="authSection">
+            <button onclick="login()" id="loginBtn" class="bg-white text-black px-5 py-1.5 rounded-full font-bold text-sm">Google Login</button>
+            <div id="userStats" class="hidden text-right">
+                <p id="userName" class="text-xs font-bold"></p>
+                <p id="monetizeStatus" class="text-[10px] uppercase tracking-wider text-yellow-400">Checking Monetization...</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="short-container" id="videoFeed">
+        <div class="short-card bg-gradient-to-br from-gray-900 to-black">
+            <div class="text-center p-6">
+                <h2 class="text-4xl font-bold mb-4">Start Earning 🇳🇵</h2>
+                <p class="text-gray-400 mb-6">Upload shorts, get 1k views, get Rs. 1000.</p>
+                <p class="text-sm text-red-500 animate-pulse font-bold">ONLY 10 FREE MONETIZATION SLOTS LEFT!</p>
+            </div>
+        </div>
+    </div>
+
+    <nav class="fixed bottom-0 w-full bg-black/90 border-t border-gray-800 flex justify-around items-center p-4 z-50">
+        <button onclick="location.reload()" class="text-2xl">🏠</button>
+        <label class="bg-red-600 w-12 h-10 flex items-center justify-center rounded-lg cursor-pointer">
+            <span class="text-2xl font-bold">+</span>
+            <input type="file" id="videoUpload" accept="video/*" class="hidden" onchange="handleUpload(this)">
+        </label>
+        <button onclick="alert('Channel Dashboard Coming Soon!')" class="text-2xl">👤</button>
+    </nav>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, getDoc, collection, query, getDocs, orderBy, limit } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+
+        // CONFIGURATION (Paste your Firebase details here)
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+        const db = getFirestore();
+        const storage = getStorage();
+        const provider = new GoogleAuthProvider();
+
+        // 1. Google Login Logic
+        window.login = async () => {
+            try {
+                const result = await signInWithPopup(auth, provider);
+                location.reload(); 
+            } catch (e) { alert("Login Failed: " + e.message); }
+        };
+
+        // 2. Auth State Observer
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                document.getElementById('loginBtn').classList.add('hidden');
+                document.getElementById('userStats').classList.remove('hidden');
+                document.getElementById('userName').innerText = user.displayName;
+                checkUserStatus(user.uid);
+            }
+            loadVideos();
+        });
+
+        // 3. Upload Logic
+        window.handleUpload = async (input) => {
+            if (!auth.currentUser) return alert("Please Login First!");
+            const file = input.files[0];
+            if (!file) return;
+
+            alert("Uploading Video... Do not close the app!");
+            
+            const fileRef = ref(storage, `shorts/${Date.now()}_${auth.currentUser.uid}`);
+            await uploadBytes(fileRef, file);
+            const url = await getDownloadURL(fileRef);
+
+            await setDoc(doc(collection(db, "videos")), {
+                videoUrl: url,
+                creator: auth.currentUser.displayName,
+                creatorId: auth.currentUser.uid,
+                timestamp: new Date(),
+                views: 0
+            });
+
+            alert("Success! Your video is live.");
+            location.reload();
+        };
+
+        // 4. One ID = One Fan Logic
+        window.becomeFan = async (creatorId) => {
+            if (!auth.currentUser) return alert("Login to follow creators!");
+            const fanId = `${auth.currentUser.uid}_${creatorId}`;
+            const fanRef = doc(db, "fans", fanId);
+            
+            const check = await getDoc(fanRef);
+            if (check.exists()) {
+                alert("You are already a fan!");
+            } else {
+                await setDoc(fanRef, { fan: auth.currentUser.uid, star: creatorId });
+                alert("New Fan Added!");
+            }
+        };
+
+        // 5. Load Feed
+        async function loadVideos() {
+            const q = query(collection(db, "videos"), orderBy("timestamp", "desc"), limit(10));
+            const snap = await getDocs(q);
+            const feed = document.getElementById('videoFeed');
+
+            snap.forEach(videoDoc => {
+                const data = videoDoc.data();
+                const card = document.createElement('div');
+                card.className = "short-card";
+                card.innerHTML = `
+                    <video src="${data.videoUrl}" loop onclick="this.play()"></video>
+                    <div class="info-overlay">
+                        <h3 class="font-bold text-lg">@${data.creator}</h3>
+                        <p class="text-sm text-gray-300">Nepal Shorts Creator</p>
+                    </div>
+                    <div class="ui-overlay">
+                        <div class="btn-action" onclick="becomeFan('${data.creatorId}')">❤️</div>
+                        <span class="text-xs">Become Fan</span>
+                    </div>
+                `;
+                feed.appendChild(card);
+            });
+        }
+
+        // 6. Monetization Check (First 10 Users)
+        async function checkUserStatus(uid) {
+            const q = query(collection(db, "videos"));
+            const snap = await getDocs(q);
+            // Simple logic: if you are one of the first 10 to upload, you're monetized
+            if (snap.size <= 10) {
+                document.getElementById('monetizeStatus').innerText = "✅ PRO MONETIZED (Rs. 1000/1k)";
+            } else {
+                document.getElementById('monetizeStatus').innerText = "100 FANS NEEDED";
+            }
+        }
+
+        // Register Service Worker for App Installation
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+</body>
+</html>

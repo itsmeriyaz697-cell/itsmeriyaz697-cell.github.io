@@ -1,0 +1,16 @@
+{
+  "name": "Nepal Shorts Official",
+  "short_name": "NP Shorts",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#ff003c",
+  "description": "Upload and Earn Rs. 1000 in Nepal",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/717/717426.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
