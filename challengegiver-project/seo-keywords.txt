@@ -1,0 +1,119 @@
+================================================================================
+          SEO STRATEGY & KEYWORD DOCUMENT FOR CHALLENGEGIVER
+================================================================================
+Project Name: ChallengeGiver
+Lead Developer: Riyaz Chalise
+Target Platform: Web, Mobile Web, App Integration
+Target Audience: Developers, Content Creators, Productivity Enthusiasts
+================================================================================
+
+
+--------------------------------------------------------------------------------
+1. CODE INJECTION META TAGS (Paste directly inside the <head> of index.html)
+--------------------------------------------------------------------------------
+
+<!-- Browser Tab Title -->
+<title>ChallengeGiver | Gamify Your Goals & Daily Grinds by Riyaz Chalise</title>
+
+<!-- Search Engine Snippet Description -->
+<meta name="description" content="ChallengeGiver is an interactive productivity web app developed by Riyaz Chalise. Gamify your daily routine, track consistency, and build streaks across wellness, productivity, and lifestyle challenges.">
+
+<!-- Primary SEO Keyword Identifiers -->
+<meta name="keywords" content="ChallengeGiver, Challenge Giver app, Riyaz Chalise, gamified productivity, habit tracker software, developer Riyaz Chalise, productivity challenges website, open source productivity software, gamify your life">
+
+<!-- Developer Attribution -->
+<meta name="author" content="Riyaz Chalise">
+<meta name="robots" content="index, follow">
+
+<!-- Social Media Open Graph Tags (For Instagram/Link Previews) -->
+<meta property="og:title" content="ChallengeGiver | Gamify Your Goals & Daily Grinds">
+<meta property="og:description" content="Level up your productivity with curated daily challenges. Engineered by developer Riyaz Chalise.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://challengegiver.com/assets/og-banner.jpg">
+
+
+--------------------------------------------------------------------------------
+2. ORGANIZED KEYWORD BANK
+--------------------------------------------------------------------------------
+
+CATEGORY A: Core Brand Identity
+* ChallengeGiver
+* Challenge Giver app
+* ChallengeGiver beta download
+* ChallengeGiver official system
+* ChallengeGiver web platform
+
+CATEGORY B: Developer Branding
+* Riyaz Chalise
+* Riyaz Chalise developer
+* Riyaz Chalise web developer
+* Riyaz Chalise software engineering
+* ChallengeGiver by Riyaz Chalise
+
+CATEGORY C: High-Traffic Search Intent Phrases
+* gamified habit tracker online
+* daily routine challenge app
+* minimalist goal tracker dashboard
+* productivity app for developers
+* gamify your life streak application
+* interactive life quest software
+* streak building routine interface
+
+
+--------------------------------------------------------------------------------
+3. PAGE ON-SITE SEO TEXT ARCHITECTURE
+--------------------------------------------------------------------------------
+
+Main Heading (H1): 
+ChallengeGiver: The Ultimate Gamified Productivity Software
+
+Sub-Heading (H2): 
+Engineered by Developer Riyaz Chalise
+
+Minor Section Heading (H3): 
+Interactive Milestone Systems & Self-Improvement Loops
+
+
+--------------------------------------------------------------------------------
+4. ASSET ALT-TEXT SPECIFICATIONS (For Images & Background Assets)
+--------------------------------------------------------------------------------
+
+* For Logo Image File (logo.png):
+  alt="ChallengeGiver official software identity logo icon dynamic gradient style"
+
+* For System Interface Mockup (dashboard-preview.png):
+  alt="ChallengeGiver software system dynamic task monitoring dashboard interface panel tracking active streak nodes"
+
+* For Developer Bio Image (riyaz-chalise.png):
+  alt="Riyaz Chalise principal software engineer and website layout architect profile image"
+
+
+--------------------------------------------------------------------------------
+5. STRUCTURAL DATA SCHEMA (Paste inside a <script> block in your index.html head)
+--------------------------------------------------------------------------------
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "ChallengeGiver",
+  "operatingSystem": "All modern browsers, Windows, macOS, Android, iOS",
+  "applicationCategory": "ProductivityApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0.00",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Riyaz Chalise",
+    "jobTitle": "Web Developer",
+    "url": "https://challengegiver.com"
+  },
+  "description": "A clean high-fidelity minimalist gamified tracker app created to push micro adjustments to daily performance routines via interactive task assignment nodes."
+}
+</script>
+
+================================================================================
+                          END OF SEO SPECIFICATION FILE
+================================================================================
