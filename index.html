@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChallengeGiver | Gamify Your Goals & Daily Grinds by Riyaz Chalise</title>
+    <meta name="description" content="ChallengeGiver is an interactive productivity web app developed by Riyaz Chalise. Gamify your daily routine, track consistency, and build streaks across wellness, productivity, and lifestyle challenges.">
+    <meta name="keywords" content="ChallengeGiver, Challenge Giver app, Riyaz Chalise, gamified productivity, habit tracker software, developer Riyaz Chalise, productivity challenges website, open source productivity software, gamify your life">
+    <meta name="author" content="Riyaz Chalise">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="ChallengeGiver | Gamify Your Goals & Daily Grinds">
+    <meta property="og:description" content="Level up your productivity with curated daily challenges. Engineered by developer Riyaz Chalise.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://challengegiver.com/assets/og-banner.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #09090b;
+        }
+        .glow-effect {
+            box-shadow: 0 0 25px -5px rgba(168, 85, 247, 0.4);
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ChallengeGiver",
+      "operatingSystem": "All modern browsers, Windows, macOS, Android, iOS",
+      "applicationCategory": "ProductivityApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0.00",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Riyaz Chalise",
+        "jobTitle": "Web Developer",
+        "url": "https://challengegiver.com"
+      },
+      "description": "A clean high-fidelity minimalist gamified tracker app created to push micro adjustments to daily performance routines via interactive task assignment nodes."
+    }
+    </script>
+</head>
+<body class="text-zinc-100 min-h-screen overflow-x-hidden relative selection:bg-purple-500 selection:text-white">
+
+    <div class="absolute top-[-10%] left-[-20%] w-[600px] h-[600px] bg-purple-900/20 rounded-full blur-[150px] pointer-events-none"></div>
+    <div class="absolute bottom-[10%] right-[-10%] w-[500px] h-[500px] bg-fuchsia-900/15 rounded-full blur-[130px] pointer-events-none"></div>
+
+    <nav class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center relative z-10">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-purple-600 to-fuchsia-500 flex items-center justify-center font-bold text-white shadow-lg shadow-purple-500/30">C</div>
+            <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">Challenge<span class="text-purple-500">Giver</span></span>
+        </div>
+        <div class="flex items-center gap-4">
+            <span class="text-xs bg-zinc-800 text-zinc-400 px-3 py-1.5 rounded-full border border-zinc-700/50 uppercase tracking-widest font-semibold">Beta v1.0</span>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-6 pt-16 pb-24 text-center relative z-10">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-sm mb-6 animate-pulse">
+            ✨ Stop scrolling. Start building.
+        </div>
+        
+        <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-none">
+            Gamify Your Grind.<br>
+            <span class="bg-gradient-to-r from-purple-400 via-fuchsia-500 to-pink-500 bg-clip-text text-transparent">Conquer the Day.</span>
+        </h1>
+        
+        <p class="text-zinc-400 text-lg md:text-xl max-w-xl mx-auto mb-10 font-light">
+            Turn your daily loops and creator milestones into epic interactive challenges. Build consistency. Unlock rewards.
+        </p>
+
+        <div class="max-w-md mx-auto bg-zinc-900/80 backdrop-blur-md rounded-2xl border border-zinc-800 p-6 text-left glow-effect transition-all duration-300 hover:border-purple-500/40 relative">
+            <div class="flex justify-between items-center mb-6">
+                <h3 id="categoryLabel" class="font-semibold text-sm tracking-wide text-purple-400 uppercase">🧘 Wellness & Health</h3>
+                <span id="streakBadge" class="text-xs bg-fuchsia-500/10 text-fuchsia-400 px-2.5 py-1 rounded-md border border-fuchsia-500/20 font-mono">STREAK: 0 DAYS</span>
+            </div>
+
+            <div id="challengeBox" class="mb-6 p-4 rounded-xl bg-zinc-950 border border-zinc-800/80 transition-all duration-300">
+                <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 rounded-lg bg-purple-600/10 border border-purple-500/30 flex items-center justify-center text-xl shrink-0" id="challengeIcon">💧</div>
+                    <div>
+                        <h4 id="challengeTitle" class="font-bold text-white text-base">Hydration First</h4>
+                        <p id="challengeDesc" class="text-zinc-400 text-xs mt-0.5">Drink one full glass of water immediately after waking up.</p>
+                    </div>
+                </div>
+                
+                <div class="w-full bg-zinc-800 h-1.5 rounded-full mt-4 overflow-hidden">
+                    <div id="progressBar" class="bg-gradient-to-r from-purple-500 to-fuchsia-500 h-full w-[0%] transition-all duration-700 ease-out"></div>
+                </div>
+            </div>
+
+            <button onclick="completeChallenge()" id="actionBtn" class="w-full bg-gradient-to-r from-purple-600 to-fuchsia-600 hover:from-purple-500 hover:to-fuchsia-500 text-white font-semibold py-3 px-4 rounded-xl shadow-lg shadow-purple-600/20 transition-all duration-200 active:scale-[0.98] flex items-center justify-center gap-2">
+                Mark Quest Complete ⚡
+            </button>
+        </div>
+
+        <div class="mt-16 text-xs text-zinc-500 tracking-wider uppercase">
+            Designed for high-performance builders & developers.
+        </div>
+    </main>
+
+    <script>
+        const challenges = [
+            { cat: "🧘 Wellness & Health", icon: "💧", title: "Hydration First", desc: "Drink one full glass of water immediately after waking up." },
+            { cat: "🧘 Wellness & Health", icon: "🥶", title: "Cold Finish", desc: "Turn your shower to freezing cold for the final 30 seconds." },
+            { cat: "🧘 Wellness & Health", icon: "📵", title: "No Screen Bedtime", desc: "Turn off all screens 45 minutes before sleep." },
+            { cat: "🧘 Wellness & Health", icon: "🪑", title: "Posture Check", desc: "Set a timer to fix your sitting posture every hour." },
+            { cat: "🧘 Wellness & Health", icon: "🍏", title: "Sugar-Free Day", desc: "Cut out all added sugars for 24 hours." },
+            { cat: "🧘 Wellness & Health", icon: "☕", title: "No-Caf Afternoon", desc: "Avoid all caffeine after 2:00 PM." },
+            { cat: "🧘 Wellness & Health", icon: "🧘", title: "The 3-Stretch Break", desc: "Do three simple full-body stretches during your lunch break." },
+            { cat: "🧘 Wellness & Health", icon: "🪜", title: "Stair Master", desc: "Choose the stairs over the elevator every time today." },
+            { cat: "🧘 Wellness & Health", icon: "🥦", title: "Green Plate", desc: "Ensure half of your lunch and dinner plates consist of vegetables." },
+            { cat: "🧘 Wellness & Health", icon: "👄", title: "Mindful Chew", desc: "Chew every single bite of food 20 times before swallowing." },
+            { cat: "🧘 Wellness & Health", icon: "🫁", title: "Deep Breaths", desc: "Take five deep, slow belly breaths during a stressful moment." },
+            { cat: "🧹 Productivity & Organization", icon: "📥", title: "Inbox Zero", desc: "Delete or archive every single email in your main inbox." },
+            { cat: "🧹 Productivity & Organization", icon: "✨", title: "Desk Clear", desc: "Remove everything from your desk except your computer and notebook." },
+            { cat: "🧹 Productivity & Organization", icon: "⏱️", title: "The 2-Minute Rule", desc: "Do any task that takes under two minutes immediately." },
+            { cat: "🧹 Productivity & Organization", icon: "💳", title: "Wallet Purge", desc: "Throw away old receipts and expired cards from your wallet." },
+            { cat: "🧹 Productivity & Organization", icon: "📱", title: "App Cleanout", desc: "Delete five phone apps you have not used this month." },
+            { cat: "🧹 Productivity & Organization", icon: "❌", title: "Tab Kill", desc: "Close all open browser tabs except the active one." },
+            { cat: "🧹 Productivity & Organization", icon: "👕", title: "One-In, One-Out", desc: "Donate one old clothing item before buying anything new." },
+            { cat: "🧹 Productivity & Organization", icon: "🌙", title: "Night Prep", desc: "Lay out tomorrow’s clothes and pack your bag tonight." },
+            { cat: "🧹 Productivity & Organization", icon: "🖥️", title: "Desktop Wipe", desc: "Delete or folder all loose files on your computer desktop." },
+            { cat: "🧹 Productivity & Organization", icon: "🎯", title: "Single-Tasking", desc: "Work on one single project for one hour without switching tasks." },
+            { cat: "🧹 Productivity & Organization", icon: "🔌", title: "Cord Tidy", desc: "Organize the messy cables behind your TV or desk." },
+            { cat: "🧠 Mindset & Creativity", icon: "🗣️", title: "Compliment a Stranger", desc: "Give one genuine, specific compliment to someone you don't know." },
+            { cat: "🧠 Mindset & Creativity", icon: "✍️", title: "Gratitude Trio", desc: "Write down three highly specific things you are grateful for today." },
+            { cat: "🧠 Mindset & Creativity", icon: "🤐", title: "No Complaining", desc: "Go an entire day without voicing a single complaint." },
+            { cat: "🧠 Mindset & Creativity", icon: "🎨", title: "Doodle Break", desc: "Spend five minutes scribbling abstract shapes on scrap paper." },
+            { cat: "🧠 Mindset & Creativity", icon: "🎵", title: "Lyrics Study", desc: "Read the written lyrics of your favorite song without music playing." },
+            { cat: "🧠 Mindset & Creativity", icon: "🗺️", title: "New Route", desc: "Walk or drive home using a completely unfamiliar path." },
+            { cat: "🧠 Mindset & Creativity", icon: "📸", title: "Photo Walk", desc: "Take a walk and photograph five beautiful things you see." },
+            { cat: "🧠 Mindset & Creativity", icon: "📖", title: "Journal Prompt", desc: "Write one full page about your favorite childhood memory." },
+            { cat: "🧠 Mindset & Creativity", icon: "🪥", title: "Left-Hand Challenge", desc: "Brush your teeth using your non-dominant hand." },
+            { cat: "🧠 Mindset & Creativity", icon: "💰", title: "No-Spend Day", desc: "Spend absolutely zero money outside of essential bills today." },
+            { cat: "🧠 Mindset & Creativity", icon: "🔇", title: "Media Fast", desc: "Listen to zero podcasts or music during your commute today." },
+            { cat: "👥 Social & Connection", icon: "💬", title: "Old Friend Text", desc: "Send a 'thinking of you' message to an old friend." },
+            { cat: "👥 Social & Connection", icon: "🫂", title: "The Long Hug", desc: "Hug a loved one tightly for at least 20 seconds." },
+            { cat: "👥 Social & Connection", icon: "👀", title: "Eye Contact", desc: "Hold eye contact for three seconds with everyone you greet." },
+            { cat: "👥 Social & Connection", icon: "✉️", title: "Handwritten Note", desc: "Write a physical thank-you note and mail or hand-deliver it." },
+            { cat: "👥 Social & Connection", icon: "👂", title: "Active Listening", desc: "Rephrase what someone says to you before replying to them." },
+            { cat: "👥 Social & Connection", icon: "🍽️", title: "Unplugged Meal", desc: "Eat dinner with family or friends with zero phones at the table." },
+            { cat: "👥 Social & Connection", icon: "🏪", title: "Local Support", desc: "Buy a coffee or item from a small, independent local business." },
+            { cat: "👥 Social & Connection", icon: "📞", title: "Call, Don't Text", desc: "Call a family member for a quick five-minute chat instead of texting." },
+            { cat: "👥 Social & Connection", icon: "💵", title: "Tip Well", desc: "Leave a generous tip for someone working in the service industry." },
+            { cat: "👥 Social & Connection", icon: "🏫", title: "Share a Skill", desc: "Spend ten minutes teaching someone something you excel at doing." },
+            { cat: "⏱️ Quick Group & Solo Games", icon: "🦿", title: "Balance Test", desc: "Stand on one leg while closing both eyes for 30 seconds." },
+            { cat: "⏱️ Quick Group & Solo Games", icon: "🪙", title: "Coin Flip Walk", desc: "Walk outside; flip a coin at every intersection to decide your turn." },
+            { cat: "⏱️ Quick Group & Solo Games", icon: "🧠", title: "Memory Game", desc: "Stare at a tray of 10 random items for 10 seconds, then list them all." },
+            { cat: "⏱️ Quick Group & Solo Games", icon: "🎙️", title: "No Fillers", desc: "Speak for two minutes straight without saying 'um,' 'ah,' or 'like.'" },
+            { cat: "⏱️ Quick Group & Solo Games", icon: "❓", title: "Trivia Minute", desc: "Answer five random trivia questions as fast as possible online." },
+            { cat: "⏱️ Quick Group & Solo Games", icon: "🤫", title: "The Silent Minute", desc: "Sit with a group in absolute silence; guess exactly when 60 seconds pass." },
+            { cat: "⏱️ Quick Group & Solo Games", icon: "✈️", title: "Paper Airplane", desc: "Build a paper airplane using only one sheet; make it fly 15 feet." },
+            { cat: "⏱️ Quick Group & Solo Games", icon: "🗣️", title: "Word Association", desc: "Play a rapid-fire word association game with a partner for two minutes." },
+            { cat: "⏱️ Quick Group & Solo Games", icon: "🎙️", title: "Rhyme Time", desc: "Pick a word and list 10 words that rhyme with it in 30 seconds." },
+            { cat: "⏱️ Quick Group & Solo Games", icon: "🥤", title: "Stack Attack", desc: "Stack 10 plastic cups into a pyramid and disassemble them in under 15 seconds." },
+            { cat: "⏱️ Quick Group & Solo Games", icon: "🪙", title: "Penny Stack", desc: "Stack as many pennies as possible on the back of your hand." },
+            { cat: "⏱️ Quick Group & Solo Games", icon: "📚", title: "Book Sentence", desc: "Pick a random book, open to page 45, and write a story using sentence three." }
+        ];
+
+        let currentId = 0;
+        let streakCount = 0;
+        let isAnimating = false;
+
+        function completeChallenge() {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            const progressBar = document.getElementById('progressBar');
+            const challengeBox = document.getElementById('challengeBox');
+            const actionBtn = document.getElementById('actionBtn');
+            const streakBadge = document.getElementById('streakBadge');
+            const title = document.getElementById('challengeTitle');
+            const desc = document.getElementById('challengeDesc');
+            const icon = document.getElementById('challengeIcon');
+            const categoryLabel = document.getElementById('categoryLabel');
+
+            progressBar.style.width = '100%';
+            
+            setTimeout(() => {
+                challengeBox.classList.remove('border-zinc-800/80');
+                challengeBox.classList.add('border-green-500/30', 'bg-green-950/10');
+                
+                let oldIcon = icon.innerHTML;
+                icon.innerHTML = '🎉';
+                icon.classList.replace('bg-purple-600/10', 'bg-green-500/10');
+                icon.classList.replace('border-purple-500/30', 'border-green-500/30');
+                
+                title.innerHTML = 'Quest Cleared! (+100 XP)';
+                title.classList.add('text-green-400');
+                
+                streakCount++;
+                streakBadge.innerHTML = `STREAK: ${streakCount} DAYS`;
+                streakBadge.classList.replace('text-fuchsia-400', 'text-green-400');
+                streakBadge.classList.replace('bg-fuchsia-500/10', 'bg-green-500/10');
+                streakBadge.classList.replace('border-fuchsia-500/20', 'border-green-500/20');
+                
+                actionBtn.innerHTML = 'Loading Next Quest... ⏳';
+                actionBtn.className = "w-full bg-zinc-800 text-zinc-400 font-semibold py-3 px-4 rounded-xl cursor-not-allowed text-center";
+
+                setTimeout(() => {
+                    currentId = (currentId + 1) % challenges.length;
+                    const nextItem = challenges[currentId];
+
+                    progressBar.style.transition = 'none';
+                    progressBar.style.width = '0%';
+                    
+                    setTimeout(() => {
+                        progressBar.style.transition = 'all 0.7s ease-out';
+                        
+                        categoryLabel.innerHTML = nextItem.cat;
+                        icon.innerHTML = nextItem.icon;
+                        title.innerHTML = nextItem.title;
+                        desc.innerHTML = nextItem.desc;
+
+                        challengeBox.classList.remove('border-green-500/30', 'bg-green-950/10');
+                        challengeBox.classList.add('border-zinc-800/80');
+                        
+                        icon.classList.replace('bg-green-500/10', 'bg-purple-600/10');
+                        icon.classList.replace('border-green-500/30', 'border-purple-500/30');
+                        title.classList.remove('text-green-400');
+                        
+                        streakBadge.classList.replace('text-green-400', 'text-fuchsia-400');
+                        streakBadge.classList.replace('bg-green-500/10', 'bg-fuchsia-500/10');
+                        streakBadge.classList.replace('border-green-500/20', 'border-fuchsia-500/20');
+
+                        actionBtn.innerHTML = 'Mark Quest Complete ⚡';
+                        actionBtn.className = "w-full bg-gradient-to-r from-purple-600 to-fuchsia-600 hover:from-purple-500 hover:to-fuchsia-500 text-white font-semibold py-3 px-4 rounded-xl shadow-lg shadow-purple-600/20 transition-all duration-200 active:scale-[0.98] flex items-center justify-center gap-2";
+                        
+                        isAnimating = false;
+                    }, 50);
+                }, 2000);
+
+            }, 400);
+        }
+    </script>
+</body>
+</html>
